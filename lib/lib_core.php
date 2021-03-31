@@ -62,7 +62,8 @@ function modal_2(){
                     <button type="button" class="btn btn-social-icon btn-instagram btn-rounded" data-toggle="tooltip" data-placement="bottom" title="Instagram">
                             <i class="fa fa-instagram"></i></button><hr>
                     </p>
-                    <p align="center">Email: <a href="mailto: develslack@gmail.com" /> develslack@gmail.com</p>
+                    <p align="center">Email: <a href="mailto: develslack@gmail.com" > develslack@gmail.com</a></p>
+                                        
                 </div>
 
                 <!-- Modal footer -->
