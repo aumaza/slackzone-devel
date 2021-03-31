@@ -270,16 +270,16 @@
           
           <li class="nav-item">
             <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal3">
+        <a class="nav-link active" href="#"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal3">
             <img src="img/devel-slack-logo2-32x32.png"  class="img-reponsive img-rounded"> Sobre mi
-        </button>
+        </button></a>
           </li>
           
           <li class="nav-item">
             <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+        <a class="nav-link active" href="#"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
             <img src="img/devel-slack-logo2-32x32.png"  class="img-reponsive img-rounded"> Contacto
-        </button>
+        </button></a>
           </li>
         </ul>
       </div>
