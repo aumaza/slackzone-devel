@@ -22,7 +22,7 @@ function modal_1(){
                     <li> Control de Stock (Kioskos, Almecenes, etc) </li>
                     </ul>
                     
-                    Todo nuestros desarrollos están basados en software libre, no trabajamos con licencias privativas.
+                    Todos nuestros desarrollos están basados en software libre, no trabajamos con licencias privativas.
                     Ofrecemos seriedad y compromiso, con seguimiento posterior a la entrega del software realizado.
                     </p>
                 </div>
@@ -106,6 +106,8 @@ function modal_3(){
 </div>';
 
 }
+
+
 
 
 ?>
