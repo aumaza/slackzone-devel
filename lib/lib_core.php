@@ -55,8 +55,8 @@ function modal_2(){
                 <!-- Modal body -->
                 <div class="modal-body">
                     <p align="center"> Visitanos en las redes sociales<br><br>
-                    <button type="button" class="btn btn-social-icon btn-facebook btn-rounded" data-toggle="tooltip" data-placement="bottom" title="Facebook">
-                            <i class="fa fa-facebook"></i></button> 
+                    <a href="https://www.facebook.com/profile.php?id=100065529521417" target="_blank"><button type="button" class="btn btn-social-icon btn-facebook btn-rounded" data-toggle="tooltip" data-placement="bottom" title="Facebook">
+                            <i class="fa fa-facebook"></i></button></a>
                     <button type="button" class="btn btn-social-icon btn-linkedin btn-rounded" data-toggle="tooltip" data-placement="bottom" title="Linkedin">
                             <i class="fa fa-linkedin"></i></button> 
                     <button type="button" class="btn btn-social-icon btn-instagram btn-rounded" data-toggle="tooltip" data-placement="bottom" title="Instagram">

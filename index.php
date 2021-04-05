@@ -21,6 +21,8 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
+  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script>
+  
   <style>
   
   .float{
@@ -263,6 +265,8 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
             <img src="img/devel-slack-logo2-32x32.png"  class="img-reponsive img-rounded"> Slackzone Development
         </button>
+        
+        
        
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -283,7 +287,8 @@
             <img src="img/devel-slack-logo2-32x32.png"  class="img-reponsive img-rounded"> Contacto
         </button></a>
           </li>
-        </ul>
+          
+          </ul>
       </div>
     </div>
   </nav>
@@ -296,9 +301,14 @@
         <ul class="list-unstyled">
           <img class="img-fluid rounded" src="img/devel-slack-logo1.png" alt="">
           <hr>
+          <p>Uitlice el botón aquí debajo, para abonar el servicio por Mercado Pago. Muchas Gracias!</p>
+          <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script><hr>
+          
           <a href="https://api.whatsapp.com/send?phone=5491161669201&text= Escriba aquí su consulta" class="float" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Hacé tu consulta por whatsapp!">
             <i class="fa fa-whatsapp my-float"></i>
           </a>
+          
+                    
         </ul>
       </div>
     </div>
