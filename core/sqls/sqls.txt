@@ -1,0 +1,36 @@
+#crear nuevo usuario y luego cambiar datos en archivo connection.php
+CREATE USER 'slack_devel'@'localhost' IDENTIFIED BY 'slack_devel';
+GRANT ALL PRIVILEGES ON gesdoju . * TO 'slack_devel'@'localhost';
+FLUSH PRIVILEGES;
+
+#tabla usuarios
+create table sd_usuarios (
+id int(11) auto_increment primary key, 
+nombre varchar(30) binary not null, 
+user varchar(90) binary not null, 
+password varchar(15) binary not null, 
+avatar varchar(120), 
+role int(1) default 1 not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#tabla clientes
+create table sd_clientes (
+id int(11) auto_increment primary key,
+cliente_nombre varchar(90) binary not null,
+email varchar(90) not null, 
+direccion varchar(90) not null,
+localidad varchar(120) not null,
+telefono varchar(18) not null,
+movil varchar(18) not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#tabla proyectos
+create table sd_proyectos (
+id int(11) auto_increment primary key,
+cliente_nombre varchar(90) binary not null,
+proyecto varchar(90) not null,
+estado_proyecto enum('Activo','Inactivo') not null,
+estado_pago enum('SI','NO'),
+fecha_pago date,
+monto_pago float(8,2)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

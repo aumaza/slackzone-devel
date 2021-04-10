@@ -1,5 +1,40 @@
 <?php
 
+/*
+** Funcion que carga esqueleto del sistema
+*/
+
+function skeleton(){
+
+  echo '<link rel="stylesheet" href="/slackzone-devel/skeleton/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/slackzone-devel/skeleton/css/bootstrap-theme.css" >
+	<link rel="stylesheet" href="/slackzone-devel/skeleton/css/bootstrap-theme.min.css" >
+	<link rel="stylesheet" href="/slackzone-devel/skeleton/css/jquery.dataTables.min.css" >
+	<link rel="stylesheet" href="/slackzone-devel/skeleton/Chart.js/Chart.min.css" >
+	<link rel="stylesheet" href="/slackzone-devel/skeleton/Chart.js/Chart.css" >
+	
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/slackzone-devel/js/jquery-3.4.1.min.js"></script>
+	<script src="/slackzone-devel/skeleton/js/bootstrap.min.js"></script>
+	
+	<script src="/slackzone-devel/skeleton/js/jquery.dataTables.min.js"></script>
+	<script src="/slackzone-devel/skeleton/js/dataTables.editor.min.js"></script>
+	<script src="/slackzone-devel/skeleton/js/dataTables.select.min.js"></script>
+	<script src="/slackzone-devel/skeleton/js/dataTables.buttons.min.js"></script>
+	
+	<script src="/slackzone-devel/skeleton/Chart.js/Chart.min.js"></script>
+	<script src="/slackzone-devel/skeleton/Chart.js/Chart.bundle.min.js"></script>
+	<script src="/slackzone-devel/skeleton/Chart.js/Chart.bundle.js"></script>
+	<script src="/slackzone-devel/skeleton/Chart.js/Chart.js"></script>';
+}
+
+
+
 function modal_1(){
 
     echo '<!-- The Modal -->
@@ -108,6 +143,32 @@ function modal_3(){
 }
 
 
+/*
+** cargador de formulario para login
+*/
+function formLogin(){
 
+   echo '<p class="lead">Ingreso para Clientes</p>
+        <p>Por favor tipee sus datos</p><hr>
+            <form action="index.php" method="POST">
+            <div class="form-group">
+            <label for="usr">Usuario:</label>
+            <input style="text-align: center" type="text" class="form-control" id="usr" name="user" placeholder="Ingrese su email">
+            </div>
+            <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input  style="text-align: center" type="password" class="form-control" id="pwd" name="pass">
+            </div>
+            <button type="submit" class="btn btn-success" name="A">Ingresar</button>
+            <button type="reset" class="btn btn-danger ">Limpiar</button>
+            </form>
+            <hr>';
+
+}
+
+/*
+<p>Uitlice el botón aquí debajo, para abonar el servicio por Mercado Pago. Muchas Gracias!</p>
+          <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script><hr>
+*/
 
 ?>

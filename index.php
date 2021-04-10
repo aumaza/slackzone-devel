@@ -1,4 +1,6 @@
-<?php include "lib/lib_core.php";
+<?php session_start();
+      include "core/connection/connection.php";
+      include "lib/lib_core.php";
 
 
 ?>
@@ -21,8 +23,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script>
-  
+    
   <style>
   
   .float{
@@ -293,6 +294,8 @@
     </div>
   </nav>
 
+  
+   
   <!-- Page Content -->
   <div class="container">
     <div class="row">
@@ -301,8 +304,114 @@
         <ul class="list-unstyled">
           <img class="img-fluid rounded" src="img/devel-slack-logo1.png" alt="">
           <hr>
-          <p>Uitlice el botón aquí debajo, para abonar el servicio por Mercado Pago. Muchas Gracias!</p>
-          <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script><hr>
+          <?php
+         
+         if($conn){
+         
+        if(isset($_POST['A'])){
+    
+        
+	$user = mysqli_real_escape_string($conn,$_POST['user']);
+	$pass = mysqli_real_escape_string($conn,$_POST['pass']);
+	
+	
+    //session_start();
+	$_SESSION['user'] = $user;
+	$_SESSION['pass'] = $pass;
+		        
+	mysqli_select_db($conn,'slack_devel');
+	
+	$sql = "SELECT * FROM sd_usuarios where user = '$user' and password = '$pass' and role = 1";
+	$q = mysqli_query($conn,$sql);
+	
+	$query = "SELECT * FROM sd_usuarios where user = '$user' and password = '$pass' and role = 0";
+	$retval = mysqli_query($conn,$query);
+	
+	
+	
+	if(!$q && !$retval){	
+			echo '<div class="alert alert-danger" role="alert">';
+			echo "Error de Conexion..." .mysqli_error($conn);
+			echo "</div>";
+			echo '<a href="core/logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
+			exit;			
+			
+			}
+		
+			if($user = mysqli_fetch_assoc($retval)){
+				
+
+				echo '<div class="alert alert-danger" role="alert">';
+				echo "<strong>Atención!  </strong>" .$_SESSION["user"];
+				echo "<br>";
+				echo '<span class="pull-center "><img src="core/icons/status/security-low.png"  class="img-reponsive img-rounded"><strong> Usuario Bloqueado. Contacte al Administrador.</strong>';
+				echo "</div>";
+				exit;
+			}
+
+			else if($user = mysqli_fetch_assoc($q)){
+
+				if(strcmp($_SESSION["user"], 'root') == 0){
+                
+                //logs($_SESSION["user"]);
+				echo "<br>";
+				echo '<div class="alert alert-success" role="alert">';
+				echo '<button class="btn btn-success">
+				      <span class="spinner-border spinner-border-sm"></span>
+				      </button>';
+				echo "<strong> Bienvenido!  </strong>" .$_SESSION["user"];
+				echo "<strong> Aguarde un Instante...</strong>";
+				echo "<br>";
+				echo "</div>";
+  				echo '<meta http-equiv="refresh" content="5;URL=core/main/main.php "/>';
+				
+			}else{
+				//logs($_SESSION["user"]);
+				echo '<div class="alert alert-success" role="alert">';
+				echo '<button class="btn btn-success">
+				      <span class="spinner-border spinner-border-sm"></span>
+				      </button>';
+				echo "<strong> Bienvenido!  </strong>" .$_SESSION["user"];
+				echo "<strong> Aguarde un Instante...</strong>";
+				echo "<br>";
+				echo "</div>";
+  				echo '<meta http-equiv="refresh" content="5;URL=core/main/main.php "/>';
+				
+			}
+			}else{
+				echo '<div class="alert alert-danger" role="alert">';
+				echo '<span class="pull-center "><img src="core/icons/status/dialog-warning.png"  class="img-reponsive img-rounded"> Usuario o Contraseña Incorrecta. Reintente Por Favor....';
+				echo "</div>";
+				}
+				}
+				}else{
+				  mysqli_error($conn);
+				}
+	
+			
+	
+	//cerramos la conexion
+	
+	mysqli_close($conn);
+           
+      ?>
+          
+                 
+          <p class="lead">Ingreso para Clientes</p>
+            <p>Por favor tipee sus datos</p><hr>
+            <form action="index.php" method="POST">
+            <div class="form-group">
+            <label for="usr">Usuario:</label>
+            <input style="text-align: center" type="text" class="form-control" id="usr" name="user" placeholder="Ingrese su email">
+            </div>
+            <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input  style="text-align: center" type="password" class="form-control" id="pwd" name="pass">
+            </div>
+            <button type="submit" class="btn btn-success" name="A">Ingresar</button>
+            <button type="reset" class="btn btn-danger ">Limpiar</button>
+            </form>
+            <hr>
           
           <a href="https://api.whatsapp.com/send?phone=5491161669201&text= Escriba aquí su consulta" class="float" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Hacé tu consulta por whatsapp!">
             <i class="fa fa-whatsapp my-float"></i>
