@@ -123,9 +123,18 @@
         
         <form action="#" method="POST">
         
-        <li class="active">
+        <?php 
+        if($_SESSION['user'] != 'root'){
+        echo  '<li class="active">
             <button type="submit" class="btn btn-default" name="A">
                 <img src="../icons/actions/view-media-artist.png"  class="img-reponsive img-rounded"> Datos Personales</button>
+        </li><hr>';
+        }
+        ?>
+        
+        <li class="active">
+            <button type="submit" class="btn btn-default" name="edit_password">
+                <img src="../icons/status/dialog-password.png"  class="img-reponsive img-rounded"> Cambiar Password</button>
         </li><hr>
        
        <?php
@@ -207,6 +216,19 @@
         $id = mysqli_real_escape_string($conn,$_POST['id']);
         $role = mysqli_real_escape_string($conn,$_POST['role']);
         cambiarPermisos($id,$role,$conn);
+      }
+      if(isset($_POST['edit_password'])){
+        loadUserPass($conn,$nombre);
+      }
+      if(isset($_POST['user_pass'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        formEditPassword($id,$conn);
+      }
+      if(isset($_POST['update_password'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        $pass1 = mysqli_real_escape_string($conn,$_POST['pass1']);
+        $pass2 = mysqli_real_escape_string($conn,$_POST['pass2']);
+        passwordValidate($conn,$id,$pass1,$pass2);
       }
       // fin seccion de Administracion de Usuarios de Espacio Root
       
