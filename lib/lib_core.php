@@ -19,7 +19,7 @@ function skeleton(){
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/slackzone-devel/js/jquery-3.4.1.min.js"></script>
+    <script src="/slackzone-devel/skeleton/js/jquery-3.4.1.min.js"></script>
 	<script src="/slackzone-devel/skeleton/js/bootstrap.min.js"></script>
 	
 	<script src="/slackzone-devel/skeleton/js/jquery.dataTables.min.js"></script>
@@ -170,5 +170,38 @@ function formLogin(){
 <p>Uitlice el botón aquí debajo, para abonar el servicio por Mercado Pago. Muchas Gracias!</p>
           <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script><hr>
 */
+
+/*
+** funcion para realizar backup de base de datos
+*/
+function dumpMysql($conn){
+
+    if($conn){
+    
+    $dbname = "slack_devel";
+    $file = $dbname.'-' . date("d-m-Y") . '.sql';
+    $dump = "mysqldump --user=root --password=slack142 slack_devel > $file";
+    $command = system($dump);
+    chmod($file, 0777);
+
+    copy($file, "../sqls/$file");
+    unlink($file);
+    echo '<div class="alert alert-success" role="alert">';
+    echo '<h1 class="panel-title text-left" contenteditable="true">
+	    <img src="../icons/actions/dialog-ok-apply.png"  class="img-reponsive img-rounded"><strong> Base de Datos Resguardada Exitosamente</strong></h1>';
+    echo "</div>";
+        
+    }else{
+       
+	echo '<div class="alert alert-danger" role="alert">';
+	echo '<h1 class="panel-title text-left" contenteditable="true">
+		<img src="../../icons/actions/dialog-ok-apply.png" class="img-reponsive img-rounded"><strong>'. mysqli_error($conn). '</strong></h1>
+	      </div>';
+         
+         }
+         
+
+}
+
 
 ?>

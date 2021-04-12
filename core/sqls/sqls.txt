@@ -30,7 +30,16 @@ id int(11) auto_increment primary key,
 cliente_nombre varchar(90) binary not null,
 proyecto varchar(90) not null,
 estado_proyecto enum('Activo','Inactivo') not null,
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+#pagos de proyectos
+create table sd_proyectos_pagos (
+id int(11) auto_increment primary key,
+cliente_nombre varchar(90) binary not null,
+proyecto varchar(90) not null,
 estado_pago enum('SI','NO'),
 fecha_pago date,
 monto_pago float(8,2)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

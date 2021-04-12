@@ -3,6 +3,7 @@
       include "../../lib/lib_core.php";
       include "lib_users/lib_users.php";
       include "lib_clients/lib_clients.php";
+      include "lib_projects/lib_projects.php";
       
       
       $usuario = $_SESSION['user'];
@@ -165,6 +166,11 @@
                 <img src="../icons/apps/system-users.png"  class="img-reponsive img-rounded"> Administrar Usuarios</button>
         </li><hr>
         
+        <li class="active">
+            <button type="submit" class="btn btn-default" name="F">
+                <img src="../icons/actions/run-build-configure.png"  class="img-reponsive img-rounded"> Administrar Proyectos</button>
+        </li><hr>
+        
         ';
         }
         
@@ -271,9 +277,67 @@
         $id = mysqli_real_escape_string($conn,$_POST['id']);
         deleteCliente($id,$conn);
       }
-      
       // FIN SECCION ADMINISTRACION DE CLIENTES
       
+      // SECCION ADMINISTRACION DE PROYECTOS ENTORNO ADMINISTRADOR
+      if(isset($_POST['F'])){
+        projects($conn);
+      }
+      if(isset($_POST['add_proyecto'])){
+        formAddProyecto($conn);
+      }
+      if(isset($_POST['addProyecto'])){
+        $cliente = mysqli_real_escape_string($conn,$_POST['cliente']);
+        $proyecto = mysqli_real_escape_string($conn,$_POST['proyecto']);
+        $estado_proyecto = mysqli_real_escape_string($conn,$_POST['estado_proyecto']);
+        addProject($cliente,$proyecto,$estado_proyecto,$conn);
+      }
+      if(isset($_POST['edit_project'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        formEditProyecto($id,$conn);
+      }
+      if(isset($_POST['editProyecto'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        $cliente = mysqli_real_escape_string($conn,$_POST['cliente']);
+        $proyecto = mysqli_real_escape_string($conn,$_POST['proyecto']);
+        $estado_proyecto = mysqli_real_escape_string($conn,$_POST['estado_proyecto']);
+        updateProyecto($id,$cliente,$estado_proyecto,$proyecto,$conn);
+      }
+      if(isset($_POST['pagos_proyecto'])){
+        projectsPagos($conn);
+      }
+      if(isset($_POST['add_pago_proyecto'])){
+        formAddPagoProyecto($conn);
+      }
+      if(isset($_POST['addPagoProyecto'])){
+        $cliente = mysqli_real_escape_string($conn,$_POST['cliente']);
+        $proyecto = mysqli_real_escape_string($conn,$_POST['proyecto']);
+        $estado_pago = mysqli_real_escape_string($conn,$_POST['estado_pago']);
+        $fecha_pago = mysqli_real_escape_string($conn,$_POST['fecha_pago']);
+        $importe_pago = mysqli_real_escape_string($conn,$_POST['importe_pago']);
+        addPagoProject($cliente,$proyecto,$estado_pago,$fecha_pago,$importe_pago,$conn);
+      }
+      if(isset($_POST['edit_pago_project'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        formAddEditPagoProyecto($id,$conn);        
+      }
+      if(isset($_POST['updatePagoProyecto'])){
+        $id = mysqli_real_escape_string($conn,$_POST['id']);
+        $estado_pago = mysqli_real_escape_string($conn,$_POST['estado_pago']);
+        $fecha_pago = mysqli_real_escape_string($conn,$_POST['fecha_pago']);
+        $importe_pago = mysqli_real_escape_string($conn,$_POST['importe_pago']);
+        updatePagoProyecto($id,$estado_pago,$fecha_pago,$importe_pago,$conn);      
+      }
+      
+      
+      // FIN SECCION ADSMINISTRACION DE PROYECTOS ENTORNO ADMINISTRADOR
+      
+      // SECCION ADMINISTRACION
+      if(isset($_POST['C'])){
+        dumpMysql($conn);
+      }
+      
+      // FIN SECCION ADMINIUSTRACION
       
       }else{
         mysqli_error($conn);
