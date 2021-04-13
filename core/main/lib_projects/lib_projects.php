@@ -594,4 +594,126 @@ function updatePagoProyecto($id,$estado_pago,$fecha_pago,$importe_pago,$conn){
 }
 
 
+// ========================================================================== //
+// ESPACIO DE USUARIO
+// ========================================================================== //
+
+/*
+** funcion que carga la tabla de todos los proyectos del cliente
+*/
+function projectsCliente($nombre,$conn){
+
+if($conn)
+{
+	$sql = "SELECT * FROM sd_proyectos where cliente_nombre = '$nombre'";
+    	mysqli_select_db($conn,'slack_devel');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/run-build-configure.png"  class="img-reponsive img-rounded"> Administración de Proyectos';
+	echo '</div><br>';
+
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Cliente</th>
+            <th class='text-nowrap text-center'>Proyecto</th>
+            <th class='text-nowrap text-center'>Estado Proyecto</th>
+            <th>&nbsp;</th>
+            </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['cliente_nombre']."</td>";
+			 echo "<td align=center>".$fila['proyecto']."</td>";
+			 echo "<td align=center>".$fila['estado_proyecto']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo '<script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="216891779-38bdb0fe-00d9-4e46-908b-a60bca6fee8d" data-source="button"></script>';
+			 echo "</td>";
+			 $count++;
+		}
+
+		echo "</table>";
+		echo "<br>";
+		echo '<form <action="#" method="POST">
+			<button type="submit" class="btn btn-default btn-sm" name="pagos_realizados">
+			  <img src="../icons/actions/view-loan.png"  class="img-reponsive img-rounded"> Pagos Realizados</button>
+		      </form><br>';
+		echo '<button type="button" class="btn btn-primary">Cantidad de Proyectos:  '.$count.' </button>';
+		echo '</div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+}
+
+
+/*
+** funcion que carga la tabla de estado de pagos de los proyectos
+*/
+
+
+function projectsPagosCliente($nombre,$conn){
+
+if($conn)
+{
+	$sql = "SELECT * FROM sd_proyectos_pagos where cliente_nombre = '$nombre'";
+    	mysqli_select_db($conn,'slack_devel');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/run-build-configure.png"  class="img-reponsive img-rounded"> Estado de Pagos de los Proyectos';
+	echo '</div><br>';
+
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Cliente</th>
+            <th class='text-nowrap text-center'>Proyecto</th>
+            <th class='text-nowrap text-center'>Estado Pago</th>
+            <th class='text-nowrap text-center'>Fecha Pago</th>
+            <th class='text-nowrap text-center'>Importe Pago</th>
+            <th>&nbsp;</th>
+            </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['cliente_nombre']."</td>";
+			 echo "<td align=center>".$fila['proyecto']."</td>";
+			 echo "<td align=center>".$fila['estado_pago']."</td>";
+			 echo "<td align=center>".$fila['fecha_pago']."</td>";
+			 echo "<td align=center>$".$fila['monto_pago']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo "</td>";
+			 $count++;
+		}
+
+		echo "</table>";
+		echo "<br>";
+		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  '.$count.' </button>';
+		echo '</div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+}
+
+
+
+
+
+
+
 ?>

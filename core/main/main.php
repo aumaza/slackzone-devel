@@ -207,7 +207,17 @@
       if(isset($_POST['home'])){
         echo '<meta http-equiv="refresh" content="0;URL=#"/>';
       }
-      
+      // SECCION ESPACIO DE USUARIO
+      if(isset($_POST['B'])){
+        projectsCliente($nombre,$conn);
+      }
+      if(isset($_POST['pagos_realizados'])){
+        projectsPagosCliente($nombre,$conn);
+      }
+      if(isset($_POST['A'])){
+        cliente($nombre,$conn);
+      }      
+      //FIN SECCION ESPACIO DE USUARIO
       
       
       // Seccion Administración de Usuarios Espacio Root
@@ -328,8 +338,7 @@
         $importe_pago = mysqli_real_escape_string($conn,$_POST['importe_pago']);
         updatePagoProyecto($id,$estado_pago,$fecha_pago,$importe_pago,$conn);      
       }
-      
-      
+       
       // FIN SECCION ADSMINISTRACION DE PROYECTOS ENTORNO ADMINISTRADOR
       
       // SECCION ADMINISTRACION

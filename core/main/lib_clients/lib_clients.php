@@ -69,6 +69,68 @@ if($conn)
 
 
 /*
+** funcion que carga la tabla de todos los clientes
+*/
+
+
+function cliente($nombre,$conn){
+
+if($conn)
+{
+	$sql = "SELECT * FROM sd_clientes where cliente_nombre = '$nombre'";
+    	mysqli_select_db($conn,'slack_devel');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Administración de Clientes';
+	echo '</div><br>';
+
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Cliente</th>
+            <th class='text-nowrap text-center'>Email</th>
+            <th class='text-nowrap text-center'>Dirección</th>
+            <th class='text-nowrap text-center'>Localidad</th>
+            <th class='text-nowrap text-center'>Teléfono</th>
+            <th class='text-nowrap text-center'>Movil</th>
+            <th>&nbsp;</th>
+            </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['cliente_nombre']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
+			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
+			 echo "<td align=center>".$fila['telefono']."</td>";
+			 echo "<td align=center>".$fila['movil']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo '<form <action="#" method="POST">
+                    <input type="hidden" name="id" value="'.$fila['id'].'">';
+                   echo '<button type="submit" class="btn btn-primary btn-sm" name="edit_user"><img src="../icons/actions/document-edit.png"  class="img-reponsive img-rounded"> Editar</button>';
+                   echo '</form>';
+			 echo "</td>";
+			 $count++;
+		}
+
+		echo "</table>";
+		echo "<br>";
+		echo '<button type="button" class="btn btn-primary">Cantidad de Usuarios:  '.$count.' </button>';
+		echo '</div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+}
+
+/*
 ** formulario para agregar Clientes
 */
 function formAddCliente(){
