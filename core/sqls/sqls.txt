@@ -1,6 +1,6 @@
 #crear nuevo usuario y luego cambiar datos en archivo connection.php
 CREATE USER 'slack_devel'@'localhost' IDENTIFIED BY 'slack_devel';
-GRANT ALL PRIVILEGES ON gesdoju . * TO 'slack_devel'@'localhost';
+GRANT ALL PRIVILEGES ON slack_devel . * TO 'slack_devel'@'localhost';
 FLUSH PRIVILEGES;
 
 #tabla usuarios
